@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Merliteam-ok/charts.git
+    path: bitnami/redis
+    targetRevision: HEAD  # O especifica una rama, tag o commit específico
+    helm:
+      valueFiles:
+        - values-prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
