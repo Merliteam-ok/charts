@@ -6,3 +6,5 @@ master:
     enabled: true
     storageClass: gp2
     size: 1Gi
+
+
